@@ -1,0 +1,804 @@
+```json
+[
+  {
+    "id": 1,
+    "category": "unsur",
+    "difficulty": "easy",
+    "q": "Apa nama unsur dengan lambang Au?",
+    "a": "Emas",
+    "o": ["Perak", "Besi", "Tembaga"]
+  },
+  {
+    "id": 2,
+    "category": "unsur",
+    "difficulty": "easy",
+    "q": "Apa nama unsur dengan lambang Ag?",
+    "a": "Perak",
+    "o": ["Emas", "Timbal", "Seng"]
+  },
+  {
+    "id": 3,
+    "category": "unsur",
+    "difficulty": "easy",
+    "q": "Apa nama unsur dengan lambang Fe?",
+    "a": "Besi",
+    "o": ["Tembaga", "Seng", "Kobalt"]
+  },
+  {
+    "id": 4,
+    "category": "unsur",
+    "difficulty": "easy",
+    "q": "Apa nama unsur dengan lambang Na?",
+    "a": "Natrium",
+    "o": ["Nitrogen", "Nikel", "Neon"]
+  },
+  {
+    "id": 5,
+    "category": "unsur",
+    "difficulty": "easy",
+    "q": "Apa nama unsur dengan lambang K?",
+    "a": "Kalium",
+    "o": ["Kalsium", "Karbon", "Kromium"]
+  },
+  {
+    "id": 6,
+    "category": "unsur",
+    "difficulty": "easy",
+    "q": "Apa nama unsur dengan lambang Cu?",
+    "a": "Tembaga",
+    "o": ["Kobalt", "Karbon", "Kalsium"]
+  },
+  {
+    "id": 7,
+    "category": "unsur",
+    "difficulty": "easy",
+    "q": "Apa nama unsur dengan lambang Pb?",
+    "a": "Timbal",
+    "o": ["Platina", "Besi", "Boron"]
+  },
+  {
+    "id": 8,
+    "category": "unsur",
+    "difficulty": "easy",
+    "q": "Apa nama unsur dengan lambang Hg?",
+    "a": "Merkuri",
+    "o": ["Magnesium", "Helium", "Hidrogen"]
+  },
+  {
+    "id": 9,
+    "category": "unsur",
+    "difficulty": "easy",
+    "q": "Apa nama unsur dengan lambang Zn?",
+    "a": "Seng",
+    "o": ["Silikon", "Sulfur", "Timah"]
+  },
+  {
+    "id": 10,
+    "category": "unsur",
+    "difficulty": "easy",
+    "q": "Apa nama unsur dengan lambang Sn?",
+    "a": "Timah",
+    "o": ["Seng", "Sulfur", "Silikon"]
+  },
+  {
+    "id": 11,
+    "category": "unsur",
+    "difficulty": "easy",
+    "q": "Apa nama unsur dengan lambang O?",
+    "a": "Oksigen",
+    "o": ["Osmium", "Oganesson", "Hidrogen"]
+  },
+  {
+    "id": 12,
+    "category": "unsur",
+    "difficulty": "easy",
+    "q": "Apa nama unsur dengan lambang H?",
+    "a": "Hidrogen",
+    "o": ["Helium", "Holmium", "Hafnium"]
+  },
+  {
+    "id": 13,
+    "category": "unsur",
+    "difficulty": "easy",
+    "q": "Apa nama unsur dengan lambang C?",
+    "a": "Karbon",
+    "o": ["Kobalt", "Kromium", "Kalsium"]
+  },
+  {
+    "id": 14,
+    "category": "unsur",
+    "difficulty": "easy",
+    "q": "Apa nama unsur dengan lambang N?",
+    "a": "Nitrogen",
+    "o": ["Nikel", "Natrium", "Neon"]
+  },
+  {
+    "id": 15,
+    "category": "unsur",
+    "difficulty": "easy",
+    "q": "Apa nama unsur dengan lambang Cl?",
+    "a": "Klorin",
+    "o": ["Kalsium", "Karbon", "Kobalt"]
+  },
+  {
+    "id": 16,
+    "category": "unsur",
+    "difficulty": "medium",
+    "q": "Apa nama unsur dengan lambang Br?",
+    "a": "Bromin",
+    "o": ["Boron", "Barium", "Berkelium"]
+  },
+  {
+    "id": 17,
+    "category": "unsur",
+    "difficulty": "medium",
+    "q": "Apa nama unsur dengan lambang I?",
+    "a": "Iodin",
+    "o": ["Indium", "Iridium", "Besi"]
+  },
+  {
+    "id": 18,
+    "category": "unsur",
+    "difficulty": "medium",
+    "q": "Apa nama unsur dengan lambang Si?",
+    "a": "Silikon",
+    "o": ["Sulfur", "Skandium", "Seng"]
+  },
+  {
+    "id": 19,
+    "category": "unsur",
+    "difficulty": "medium",
+    "q": "Apa nama unsur dengan lambang P?",
+    "a": "Fosfor",
+    "o": ["Platina", "Polonium", "Palladium"]
+  },
+  {
+    "id": 20,
+    "category": "unsur",
+    "difficulty": "medium",
+    "q": "Apa nama unsur dengan lambang Li?",
+    "a": "Litium",
+    "o": ["Lutetium", "Lawrensium", "Lantanum"]
+  },
+  {
+    "id": 21,
+    "category": "unsur",
+    "difficulty": "medium",
+    "q": "Apa nama unsur dengan lambang Mg?",
+    "a": "Magnesium",
+    "o": ["Mangan", "Molibdenum", "Merkuri"]
+  },
+  {
+    "id": 22,
+    "category": "unsur",
+    "difficulty": "medium",
+    "q": "Apa nama unsur dengan lambang Al?",
+    "a": "Aluminium",
+    "o": ["Argon", "Amerisium", "Arsenik"]
+  },
+  {
+    "id": 23,
+    "category": "unsur",
+    "difficulty": "medium",
+    "q": "Apa nama unsur dengan lambang Ca?",
+    "a": "Kalsium",
+    "o": ["Karbon", "Kalium", "Kadmium"]
+  },
+  {
+    "id": 24,
+    "category": "unsur",
+    "difficulty": "medium",
+    "q": "Apa nama unsur dengan lambang Cr?",
+    "a": "Kromium",
+    "o": ["Karbon", "Kobalt", "Kalsium"]
+  },
+  {
+    "id": 25,
+    "category": "unsur",
+    "difficulty": "medium",
+    "q": "Apa nama unsur dengan lambang Ni?",
+    "a": "Nikel",
+    "o": ["Nitrogen", "Neon", "Natrium"]
+  },
+  {
+    "id": 26,
+    "category": "rumus kimia",
+    "difficulty": "easy",
+    "q": "Apa rumus kimia air?",
+    "a": "H2O",
+    "o": ["CO2", "NaCl", "O2"]
+  },
+  {
+    "id": 27,
+    "category": "rumus kimia",
+    "difficulty": "easy",
+    "q": "Apa rumus kimia garam dapur?",
+    "a": "NaCl",
+    "o": ["KCl", "NaOH", "CaCO3"]
+  },
+  {
+    "id": 28,
+    "category": "rumus kimia",
+    "difficulty": "easy",
+    "q": "Apa rumus kimia karbon dioksida?",
+    "a": "CO2",
+    "o": ["CO", "C2O", "CaO"]
+  },
+  {
+    "id": 29,
+    "category": "rumus kimia",
+    "difficulty": "easy",
+    "q": "Apa rumus kimia oksigen?",
+    "a": "O2",
+    "o": ["O3", "H2", "CO2"]
+  },
+  {
+    "id": 30,
+    "category": "rumus kimia",
+    "difficulty": "easy",
+    "q": "Apa rumus kimia amonia?",
+    "a": "NH3",
+    "o": ["NO2", "NH4", "N2H4"]
+  },
+  {
+    "id": 31,
+    "category": "rumus kimia",
+    "difficulty": "easy",
+    "q": "Apa rumus kimia cuka?",
+    "a": "CH3COOH",
+    "o": ["HCl", "NaOH", "H2SO4"]
+  },
+  {
+    "id": 32,
+    "category": "rumus kimia",
+    "difficulty": "easy",
+    "q": "Apa rumus kimia soda kue?",
+    "a": "NaHCO3",
+    "o": ["NaOH", "Na2CO3", "KOH"]
+  },
+  {
+    "id": 33,
+    "category": "rumus kimia",
+    "difficulty": "easy",
+    "q": "Apa rumus kimia kapur?",
+    "a": "CaCO3",
+    "o": ["CaO", "CaCl2", "CO2"]
+  },
+  {
+    "id": 34,
+    "category": "rumus kimia",
+    "difficulty": "easy",
+    "q": "Apa rumus kimia glukosa?",
+    "a": "C6H12O6",
+    "o": ["CH4", "C12H22O11", "CO2"]
+  },
+  {
+    "id": 35,
+    "category": "rumus kimia",
+    "difficulty": "easy",
+    "q": "Apa rumus kimia etanol?",
+    "a": "C2H5OH",
+    "o": ["CH3OH", "CH4", "C3H7OH"]
+  },
+  {
+    "id": 36,
+    "category": "rumus kimia",
+    "difficulty": "medium",
+    "q": "Apa rumus kimia asam sulfat?",
+    "a": "H2SO4",
+    "o": ["HCl", "HNO3", "NaOH"]
+  },
+  {
+    "id": 37,
+    "category": "rumus kimia",
+    "difficulty": "medium",
+    "q": "Apa rumus kimia asam klorida?",
+    "a": "HCl",
+    "o": ["H2SO4", "NaCl", "KCl"]
+  },
+  {
+    "id": 38,
+    "category": "rumus kimia",
+    "difficulty": "medium",
+    "q": "Apa rumus kimia natrium hidroksida?",
+    "a": "NaOH",
+    "o": ["KOH", "NaCl", "CaOH"]
+  },
+  {
+    "id": 39,
+    "category": "rumus kimia",
+    "difficulty": "medium",
+    "q": "Apa rumus kimia kalium hidroksida?",
+    "a": "KOH",
+    "o": ["NaOH", "KCl", "CaOH"]
+  },
+  {
+    "id": 40,
+    "category": "rumus kimia",
+    "difficulty": "medium",
+    "q": "Apa rumus kimia karbon monoksida?",
+    "a": "CO",
+    "o": ["CO2", "C2O", "CaO"]
+  },
+  {
+    "id": 41,
+    "category": "rumus kimia",
+    "difficulty": "medium",
+    "q": "Apa rumus kimia nitrogen dioksida?",
+    "a": "NO2",
+    "o": ["NO", "NH3", "N2O"]
+  },
+  {
+    "id": 42,
+    "category": "rumus kimia",
+    "difficulty": "medium",
+    "q": "Apa rumus kimia hidrogen peroksida?",
+    "a": "H2O2",
+    "o": ["H2O", "HO2", "O2H"]
+  },
+  {
+    "id": 43,
+    "category": "rumus kimia",
+    "difficulty": "medium",
+    "q": "Apa rumus kimia ozon?",
+    "a": "O3",
+    "o": ["O2", "H2O", "CO2"]
+  },
+  {
+    "id": 44,
+    "category": "rumus kimia",
+    "difficulty": "medium",
+    "q": "Apa rumus kimia metana?",
+    "a": "CH4",
+    "o": ["C2H6", "CO2", "CH3OH"]
+  },
+  {
+    "id": 45,
+    "category": "rumus kimia",
+    "difficulty": "medium",
+    "q": "Apa rumus kimia kalsium oksida?",
+    "a": "CaO",
+    "o": ["CaCO3", "CaCl2", "CO2"]
+  },
+  {
+    "id": 46,
+    "category": "senyawa",
+    "difficulty": "easy",
+    "q": "Senyawa dengan rumus H2O disebut?",
+    "a": "Air",
+    "o": ["Amonia", "Oksigen", "Hidrogen"]
+  },
+  {
+    "id": 47,
+    "category": "senyawa",
+    "difficulty": "easy",
+    "q": "Senyawa dengan rumus NaCl disebut?",
+    "a": "Garam dapur",
+    "o": ["Gula", "Kapur", "Cuka"]
+  },
+  {
+    "id": 48,
+    "category": "senyawa",
+    "difficulty": "easy",
+    "q": "Senyawa dengan rumus CO2 disebut?",
+    "a": "Karbon dioksida",
+    "o": ["Karbon monoksida", "Metana", "Oksigen"]
+  },
+  {
+    "id": 49,
+    "category": "senyawa",
+    "difficulty": "easy",
+    "q": "Senyawa dengan rumus NH3 disebut?",
+    "a": "Amonia",
+    "o": ["Nitrogen", "Urea", "Nitrat"]
+  },
+  {
+    "id": 50,
+    "category": "senyawa",
+    "difficulty": "easy",
+    "q": "Senyawa dengan rumus HCl disebut?",
+    "a": "Asam klorida",
+    "o": ["Asam sulfat", "Asam asetat", "Amonia"]
+  },
+  {
+    "id": 51,
+    "category": "senyawa",
+    "difficulty": "easy",
+    "q": "Senyawa dengan rumus H2SO4 disebut?",
+    "a": "Asam sulfat",
+    "o": ["Asam klorida", "Asam nitrat", "Asam karbonat"]
+  },
+  {
+    "id": 52,
+    "category": "senyawa",
+    "difficulty": "easy",
+    "q": "Senyawa dengan rumus CH4 disebut?",
+    "a": "Metana",
+    "o": ["Etanol", "Propana", "Karbon dioksida"]
+  },
+  {
+    "id": 53,
+    "category": "senyawa",
+    "difficulty": "easy",
+    "q": "Senyawa dengan rumus C2H5OH disebut?",
+    "a": "Etanol",
+    "o": ["Metanol", "Glukosa", "Metana"]
+  },
+  {
+    "id": 54,
+    "category": "senyawa",
+    "difficulty": "easy",
+    "q": "Senyawa dengan rumus O2 disebut?",
+    "a": "Oksigen",
+    "o": ["Ozon", "Nitrogen", "Air"]
+  },
+  {
+    "id": 55,
+    "category": "senyawa",
+    "difficulty": "easy",
+    "q": "Senyawa dengan rumus O3 disebut?",
+    "a": "Ozon",
+    "o": ["Oksigen", "Air", "Nitrogen"]
+  },
+  {
+    "id": 56,
+    "category": "senyawa",
+    "difficulty": "medium",
+    "q": "Senyawa dengan rumus H2O2 disebut?",
+    "a": "Hidrogen peroksida",
+    "o": ["Air", "Oksigen", "Asam sulfat"]
+  },
+  {
+    "id": 57,
+    "category": "senyawa",
+    "difficulty": "medium",
+    "q": "Senyawa dengan rumus NO2 disebut?",
+    "a": "Nitrogen dioksida",
+    "o": ["Nitrogen monoksida", "Nitrat", "Amonia"]
+  },
+  {
+    "id": 58,
+    "category": "senyawa",
+    "difficulty": "medium",
+    "q": "Senyawa dengan rumus CO disebut?",
+    "a": "Karbon monoksida",
+    "o": ["Karbon dioksida", "Karbon", "Metana"]
+  },
+  {
+    "id": 59,
+    "category": "senyawa",
+    "difficulty": "medium",
+    "q": "Senyawa dengan rumus NaHCO3 disebut?",
+    "a": "Natrium bikarbonat",
+    "o": ["Natrium karbonat", "Natrium hidroksida", "Natrium klorida"]
+  },
+  {
+    "id": 60,
+    "category": "senyawa",
+    "difficulty": "medium",
+    "q": "Senyawa dengan rumus C6H12O6 disebut?",
+    "a": "Glukosa",
+    "o": ["Fruktosa", "Sukrosa", "Etanol"]
+  },
+  {
+    "id": 61,
+    "category": "senyawa",
+    "difficulty": "medium",
+    "q": "Senyawa dengan rumus CaCO3 disebut?",
+    "a": "Kalsium karbonat",
+    "o": ["Kalsium oksida", "Kalsium sulfat", "Kalsium klorida"]
+  },
+  {
+    "id": 62,
+    "category": "senyawa",
+    "difficulty": "medium",
+    "q": "Senyawa dengan rumus NaOH disebut?",
+    "a": "Natrium hidroksida",
+    "o": ["Kalium hidroksida", "Natrium klorida", "Kalsium hidroksida"]
+  },
+  {
+    "id": 63,
+    "category": "senyawa",
+    "difficulty": "medium",
+    "q": "Senyawa dengan rumus KOH disebut?",
+    "a": "Kalium hidroksida",
+    "o": ["Natrium hidroksida", "Kalium klorida", "Kalsium oksida"]
+  },
+  {
+    "id": 64,
+    "category": "senyawa",
+    "difficulty": "medium",
+    "q": "Senyawa dengan rumus CH3COOH disebut?",
+    "a": "Asam asetat",
+    "o": ["Asam sulfat", "Metana", "Etanol"]
+  },
+  {
+    "id": 65,
+    "category": "senyawa",
+    "difficulty": "medium",
+    "q": "Senyawa dengan rumus CaO disebut?",
+    "a": "Kalsium oksida",
+    "o": ["Kalsium karbonat", "Kalsium klorida", "Kalsium hidroksida"]
+  },
+  {
+    "id": 66,
+    "category": "asam basa",
+    "difficulty": "easy",
+    "q": "Larutan dengan pH kurang dari 7 bersifat?",
+    "a": "Asam",
+    "o": ["Basa", "Netral", "Garam"]
+  },
+  {
+    "id": 67,
+    "category": "asam basa",
+    "difficulty": "easy",
+    "q": "Larutan dengan pH lebih dari 7 bersifat?",
+    "a": "Basa",
+    "o": ["Asam", "Netral", "Asam kuat"]
+  },
+  {
+    "id": 68,
+    "category": "asam basa",
+    "difficulty": "easy",
+    "q": "Indikator alami yang dapat digunakan untuk menguji asam basa adalah?",
+    "a": "Kubis ungu",
+    "o": ["Garam", "Pasir", "Gula"]
+  },
+  {
+    "id": 69,
+    "category": "asam basa",
+    "difficulty": "easy",
+    "q": "Asam menghasilkan ion apa di dalam air?",
+    "a": "H+",
+    "o": ["OH-", "Na+", "Cl-"]
+  },
+  {
+    "id": 70,
+    "category": "asam basa",
+    "difficulty": "easy",
+    "q": "Basa menghasilkan ion apa di dalam air?",
+    "a": "OH-",
+    "o": ["H+", "Na+", "Cl-"]
+  },
+  {
+    "id": 71,
+    "category": "asam basa",
+    "difficulty": "medium",
+    "q": "Lakmus merah dalam larutan basa akan berubah menjadi warna?",
+    "a": "Biru",
+    "o": ["Merah", "Hijau", "Kuning"]
+  },
+  {
+    "id": 72,
+    "category": "asam basa",
+    "difficulty": "medium",
+    "q": "Lakmus biru dalam larutan asam akan berubah menjadi warna?",
+    "a": "Merah",
+    "o": ["Biru", "Hijau", "Kuning"]
+  },
+  {
+    "id": 73,
+    "category": "asam basa",
+    "difficulty": "medium",
+    "q": "Contoh senyawa basa kuat adalah?",
+    "a": "NaOH",
+    "o": ["HCl", "CH3COOH", "CO2"]
+  },
+  {
+    "id": 74,
+    "category": "asam basa",
+    "difficulty": "medium",
+    "q": "Contoh asam kuat adalah?",
+    "a": "HCl",
+    "o": ["NaOH", "NH3", "CH4"]
+  },
+  {
+    "id": 75,
+    "category": "asam basa",
+    "difficulty": "medium",
+    "q": "pH air murni pada suhu normal adalah?",
+    "a": "7",
+    "o": ["1", "5", "14"]
+  },
+  {
+    "id": 76,
+    "category": "asam basa",
+    "difficulty": "hard",
+    "q": "Asam asetat tergolong asam?",
+    "a": "Lemah",
+    "o": ["Kuat", "Super kuat", "Netral"]
+  },
+  {
+    "id": 77,
+    "category": "asam basa",
+    "difficulty": "hard",
+    "q": "NaOH dalam air akan terionisasi menghasilkan?",
+    "a": "Na+ dan OH-",
+    "o": ["H+ dan Cl-", "Na+ dan Cl-", "H+ dan OH-"]
+  },
+  {
+    "id": 78,
+    "category": "asam basa",
+    "difficulty": "hard",
+    "q": "HCl dalam air akan menghasilkan ion?",
+    "a": "H+ dan Cl-",
+    "o": ["Na+ dan OH-", "H+ dan OH-", "Na+ dan Cl-"]
+  },
+  {
+    "id": 79,
+    "category": "asam basa",
+    "difficulty": "hard",
+    "q": "Reaksi antara asam dan basa disebut?",
+    "a": "Netralisasi",
+    "o": ["Oksidasi", "Reduksi", "Sublimasi"]
+  },
+  {
+    "id": 80,
+    "category": "asam basa",
+    "difficulty": "hard",
+    "q": "Produk utama reaksi netralisasi adalah?",
+    "a": "Garam dan air",
+    "o": ["Gas dan air", "Asam dan basa", "Logam dan air"]
+  },
+  {
+    "id": 81,
+    "category": "organik",
+    "difficulty": "easy",
+    "q": "Metana termasuk golongan senyawa?",
+    "a": "Alkana",
+    "o": ["Alkena", "Alkuna", "Alkohol"]
+  },
+  {
+    "id": 82,
+    "category": "organik",
+    "difficulty": "easy",
+    "q": "Etanol termasuk golongan?",
+    "a": "Alkohol",
+    "o": ["Alkana", "Ester", "Aldehid"]
+  },
+  {
+    "id": 83,
+    "category": "organik",
+    "difficulty": "easy",
+    "q": "Rumus kimia metanol adalah?",
+    "a": "CH3OH",
+    "o": ["C2H5OH", "CH4", "C3H7OH"]
+  },
+  {
+    "id": 84,
+    "category": "organik",
+    "difficulty": "easy",
+    "q": "Rumus kimia propana adalah?",
+    "a": "C3H8",
+    "o": ["C2H6", "CH4", "C4H10"]
+  },
+  {
+    "id": 85,
+    "category": "organik",
+    "difficulty": "easy",
+    "q": "Glukosa termasuk jenis senyawa?",
+    "a": "Karbohidrat",
+    "o": ["Protein", "Lemak", "Mineral"]
+  },
+  {
+    "id": 86,
+    "category": "organik",
+    "difficulty": "medium",
+    "q": "Senyawa organik selalu mengandung unsur?",
+    "a": "Karbon",
+    "o": ["Besi", "Emas", "Natrium"]
+  },
+  {
+    "id": 87,
+    "category": "organik",
+    "difficulty": "medium",
+    "q": "Etana memiliki rumus?",
+    "a": "C2H6",
+    "o": ["CH4", "C3H8", "C2H4"]
+  },
+  {
+    "id": 88,
+    "category": "organik",
+    "difficulty": "medium",
+    "q": "Etena termasuk golongan?",
+    "a": "Alkena",
+    "o": ["Alkana", "Alkuna", "Alkohol"]
+  },
+  {
+    "id": 89,
+    "category": "organik",
+    "difficulty": "medium",
+    "q": "Etuna termasuk golongan?",
+    "a": "Alkuna",
+    "o": ["Alkena", "Alkana", "Alkohol"]
+  },
+  {
+    "id": 90,
+    "category": "organik",
+    "difficulty": "medium",
+    "q": "Cuka mengandung senyawa organik berupa?",
+    "a": "Asam asetat",
+    "o": ["Asam sulfat", "Natrium klorida", "Amonia"]
+  },
+  {
+    "id": 91,
+    "category": "organik",
+    "difficulty": "hard",
+    "q": "Rumus umum alkana adalah?",
+    "a": "CnH2n+2",
+    "o": ["CnH2n", "CnH2n-2", "CnHn"]
+  },
+  {
+    "id": 92,
+    "category": "organik",
+    "difficulty": "hard",
+    "q": "Rumus umum alkena adalah?",
+    "a": "CnH2n",
+    "o": ["CnH2n+2", "CnH2n-2", "CnHn"]
+  },
+  {
+    "id": 93,
+    "category": "organik",
+    "difficulty": "hard",
+    "q": "Rumus umum alkuna adalah?",
+    "a": "CnH2n-2",
+    "o": ["CnH2n", "CnH2n+2", "CnHn"]
+  },
+  {
+    "id": 94,
+    "category": "organik",
+    "difficulty": "hard",
+    "q": "Jumlah atom karbon dalam propana adalah?",
+    "a": "3",
+    "o": ["2", "4", "5"]
+  },
+  {
+    "id": 95,
+    "category": "organik",
+    "difficulty": "hard",
+    "q": "Jumlah atom hidrogen dalam metana adalah?",
+    "a": "4",
+    "o": ["2", "6", "8"]
+  },
+  {
+    "id": 96,
+    "category": "unsur",
+    "difficulty": "hard",
+    "q": "Apa nama unsur dengan lambang W?",
+    "a": "Tungsten",
+    "o": ["Timah", "Titanium", "Teknesium"]
+  },
+  {
+    "id": 97,
+    "category": "unsur",
+    "difficulty": "hard",
+    "q": "Apa nama unsur dengan lambang Sb?",
+    "a": "Antimon",
+    "o": ["Argon", "Aktinium", "Amerisium"]
+  },
+  {
+    "id": 98,
+    "category": "unsur",
+    "difficulty": "hard",
+    "q": "Apa nama unsur dengan lambang Xe?",
+    "a": "Xenon",
+    "o": ["Xenium", "Zirkonium", "Yttrium"]
+  },
+  {
+    "id": 99,
+    "category": "unsur",
+    "difficulty": "hard",
+    "q": "Apa nama unsur dengan lambang Cs?",
+    "a": "Sesium",
+    "o": ["Kalsium", "Skandium", "Kadmium"]
+  },
+  {
+    "id": 100,
+    "category": "unsur",
+    "difficulty": "hard",
+    "q": "Apa nama unsur dengan lambang Rn?",
+    "a": "Radon",
+    "o": ["Radium", "Rhenium", "Rubidium"]
+  }
+]
+```
