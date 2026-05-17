@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Kuis Kimia Pagi</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: "#10b981",
+            secondary: "#6366f1"
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .option-btn {
+      transition: all 0.2s ease;
+    }
+
+    .option-btn:active {
+      transform: scale(0.98);
+    }
+
+    .fade-in {
+      animation: fade 0.3s ease;
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-900 text-white min-h-screen flex items-center justify-center p-4">
+
+  <div class="w-full max-w-xl">
+
+    <!-- HEADER -->
+    <div class="mb-6">
+
+      <h1 class="text-3xl font-bold text-center text-emerald-400">
+        Kuis Kimia Pagi
+      </h1>
+
+      <p class="text-slate-400 text-center mt-2 text-sm">
+        Latihan hafalan unsur & senyawa setiap pagi
+      </p>
+
+    </div>
+
+    <!-- MAIN CARD -->
+    <div class="bg-slate-800 rounded-3xl shadow-2xl p-5 border border-slate-700">
+
+      <!-- WELCOME SCREEN -->
+      <div id="welcomeScreen" class="fade-in">
+
+        <img
+          src="welcome.png"
+          class="w-full rounded-2xl mb-5 border border-slate-700"
+        />
+
+        <h2 class="text-2xl font-bold text-center text-emerald-400 mb-3">
+          Selamat Pagi, Chemist! ☀️
+        </h2>
+
+        <p class="text-slate-300 text-center leading-relaxed mb-6">
+          Mulai harimu dengan sedikit latihan kimia agar otak tetap tajam seperti ilmuwan sejati.
+        </p>
+
+        <button
+          onclick="startQuiz()"
+          class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-bold py-4 rounded-2xl text-lg transition">
+          Mulai Kuis
+        </button>
+
+      </div>
+
+      <!-- QUIZ CONTAINER -->
+      <div id="quizContainer" class="hidden fade-in">
+
+        <!-- PROGRESS -->
+        <div class="mb-5">
+
+          <div class="flex justify-between text-sm mb-2 text-slate-300">
+            <span id="progressText">Soal 1 dari 10</span>
+            <span id="scoreText">Skor: 0</span>
+          </div>
+
+          <div class="w-full bg-slate-700 rounded-full h-3 overflow-hidden">
+
+            <div
+              id="progressBar"
+              class="bg-gradient-to-r from-emerald-400 to-indigo-500 h-3 rounded-full transition-all duration-300"
+              style="width: 10%">
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- QUESTION -->
+        <h2
+          id="question"
+          class="text-xl font-semibold leading-relaxed mb-6 text-slate-100">
+        </h2>
+
+        <!-- OPTIONS -->
+        <div id="options" class="grid gap-4"></div>
+
+      </div>
+
+      <!-- RESULT -->
+      <div id="resultContainer" class="hidden text-center fade-in">
+
+        <img
+          id="resultImage"
+          src=""
+          class="w-full rounded-2xl mb-5 border border-slate-700"
+        />
+
+        <div class="text-6xl mb-4">
+          🧪
+        </div>
+
+        <h2 class="text-3xl font-bold text-emerald-400 mb-3">
+          Kuis Selesai!
+        </h2>
+
+        <p
+          id="finalScore"
+          class="text-5xl font-extrabold mb-4 text-white">
+        </p>
+
+        <p
+          id="motivation"
+          class="text-slate-300 mb-8 text-lg leading-relaxed">
+        </p>
+
+        <button
+          onclick="startQuiz()"
+          class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-bold py-4 rounded-2xl text-lg transition">
+          Mulai Kuis Baru
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    // =========================
+    // LOAD QUESTIONS FROM JSON
+    // =========================
+
+    let questionBank = [];
+
+    async function loadQuestions() {
+
+      try {
+
+        const response = await fetch("questions.json");
+
+        questionBank = await response.json();
+
+        console.log("Questions loaded:", questionBank.length);
+
+      }
+
+      catch (error) {
+
+        console.error("Gagal load questions:", error);
+
+        alert("Questions gagal dimuat!");
+
+      }
+
+    }
+
+    // =========================
+    // VARIABLES
+    // =========================
+
+    let quizQuestions = [];
+    let currentQuestion = 0;
+    let score = 0;
+
+    const TOTAL_QUESTIONS = 10;
+
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+
+    const progressText = document.getElementById("progressText");
+    const progressBar = document.getElementById("progressBar");
+    const scoreText = document.getElementById("scoreText");
+
+    const quizContainer = document.getElementById("quizContainer");
+    const resultContainer = document.getElementById("resultContainer");
+
+    const welcomeScreen = document.getElementById("welcomeScreen");
+    const resultImage = document.getElementById("resultImage");
+
+    const finalScore = document.getElementById("finalScore");
+    const motivation = document.getElementById("motivation");
+
+    // =========================
+    // SHUFFLE FUNCTION
+    // =========================
+
+    function shuffle(array) {
+
+      return [...array].sort(() => Math.random() - 0.5);
+
+    }
+
+    // =========================
+    // START QUIZ
+    // =========================
+
+    function startQuiz() {
+
+      if (questionBank.length === 0) {
+
+        alert("Questions belum selesai dimuat!");
+        return;
+
+      }
+
+      welcomeScreen.classList.add("hidden");
+
+      currentQuestion = 0;
+      score = 0;
+
+      quizQuestions =
+        shuffle(questionBank).slice(0, TOTAL_QUESTIONS);
+
+      quizContainer.classList.remove("hidden");
+      resultContainer.classList.add("hidden");
+
+      loadQuestion();
+
+    }
+
+    // =========================
+    // LOAD QUESTION
+    // =========================
+
+    function loadQuestion() {
+
+      const q = quizQuestions[currentQuestion];
+
+      questionEl.textContent = q.q;
+
+      progressText.textContent =
+        `Soal ${currentQuestion + 1} dari ${TOTAL_QUESTIONS}`;
+
+      scoreText.textContent =
+        `Skor: ${score}`;
+
+      progressBar.style.width =
+        `${((currentQuestion + 1) / TOTAL_QUESTIONS) * 100}%`;
+
+      optionsEl.innerHTML = "";
+
+      const allOptions =
+        shuffle([q.a, ...q.o]);
+
+      allOptions.forEach(option => {
+
+        const btn =
+          document.createElement("button");
+
+        btn.textContent = option;
+
+        btn.className =
+          "option-btn w-full bg-slate-700 hover:bg-slate-600 border border-slate-600 text-left py-4 px-4 rounded-2xl text-base font-medium";
+
+        btn.onclick =
+          () => selectAnswer(btn, option, q.a);
+
+        optionsEl.appendChild(btn);
+
+      });
+
+    }
+
+    // =========================
+    // SELECT ANSWER
+    // =========================
+
+    function selectAnswer(button, selected, correct) {
+
+      const buttons =
+        document.querySelectorAll(".option-btn");
+
+      buttons.forEach(btn => {
+
+        btn.disabled = true;
+
+        // Correct Answer
+        if (btn.textContent === correct) {
+
+          btn.classList.remove("bg-slate-700");
+
+          btn.classList.add(
+            "bg-emerald-500",
+            "text-slate-900"
+          );
+
+        }
+
+        // Wrong Answer
+        if (
+          btn.textContent === selected &&
+          selected !== correct
+        ) {
+
+          btn.classList.remove("bg-slate-700");
+
+          btn.classList.add(
+            "bg-red-500",
+            "text-white"
+          );
+
+        }
+
+      });
+
+      // Add Score
+      if (selected === correct) {
+
+        score += 10;
+
+        scoreText.textContent =
+          `Skor: ${score}`;
+
+      }
+
+      setTimeout(() => {
+
+        currentQuestion++;
+
+        if (currentQuestion < TOTAL_QUESTIONS) {
+
+          loadQuestion();
+
+        }
+
+        else {
+
+          showResult();
+
+        }
+
+      }, 1000);
+
+    }
+
+    // =========================
+    // SHOW RESULT
+    // =========================
+
+    function showResult() {
+
+      quizContainer.classList.add("hidden");
+
+      resultContainer.classList.remove("hidden");
+
+      finalScore.textContent =
+        `${score}/100`;
+
+      let message = "";
+
+      // PERFECT
+      if (score === 100) {
+
+        message =
+          "Luar biasa! Pagi ini otak kimiamu benar-benar bersinar seperti emas murni. ✨";
+
+        resultImage.src = "perfect.png";
+
+      }
+
+      // GREAT
+      else if (score >= 80) {
+
+        message =
+          "Hebat! Hafalan kimiamu sudah sangat kuat. Pertahankan rutinitas pagimu! 🌞";
+
+        resultImage.src = "great.png";
+
+      }
+
+      // GOOD
+      else if (score >= 50) {
+
+        message =
+          "Bagus! Sedikit lagi menuju master kimia pagi hari. Tetap konsisten ya! 🧪";
+
+        resultImage.src = "good.png";
+
+      }
+
+      // BAD
+      else if (score >= 30) {
+
+        message =
+          "Tidak buruk! Setiap pagi adalah kesempatan baru untuk berkembang. 💡";
+
+        resultImage.src = "bad.png";
+
+      }
+
+      // SAD
+      else {
+
+        message =
+          "Semangat! Bahkan ilmuwan hebat juga belajar sedikit demi sedikit setiap hari. 🚀";
+
+        resultImage.src = "sad.png";
+
+      }
+
+      motivation.textContent = message;
+
+    }
+
+    // =========================
+    // INITIAL LOAD
+    // =========================
+
+    window.onload = async () => {
+
+      await loadQuestions();
+
+    }
+
+  </script>
+
+</body>
+
+</html>
