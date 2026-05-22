@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>"Kuis Kimia Pagi"</title>
+  <title>Kuis Kimia Pagi</title>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -69,6 +69,66 @@
         Setoran latihan hafalan unsur & senyawa setiap pagi =￣ω￣=
       </p>
 
+      <!-- XP & STREAK PANEL -->
+      <div class="mt-5 bg-slate-800 border border-slate-700 rounded-2xl p-4">
+
+        <div class="flex items-center justify-between mb-3">
+
+          <div>
+            <p class="text-slate-400 text-sm">
+              Rank Saat Ini
+            </p>
+
+            <h2
+              id="rankText"
+              class="text-2xl font-bold text-emerald-400">
+              Student
+            </h2>
+          </div>
+
+          <div class="text-right">
+            <p class="text-slate-400 text-sm">
+              Daily Streak
+            </p>
+
+            <div class="flex items-center gap-2 justify-end">
+
+              <span
+                id="streakFire"
+                class="text-3xl grayscale">
+                🔥
+              </span>
+
+              <span
+                id="streakCount"
+                class="text-xl font-bold">
+                0
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- XP BAR -->
+        <div class="mb-2 flex justify-between text-sm text-slate-300">
+          <span id="xpText">0 XP</span>
+          <span>700 XP</span>
+        </div>
+
+        <div class="w-full bg-slate-700 rounded-full h-4 overflow-hidden">
+
+          <div
+            id="xpBar"
+            class="bg-gradient-to-r from-emerald-400 to-indigo-500 h-4 rounded-full transition-all duration-500"
+            style="width: 0%">
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
 
     <!-- MAIN CARD -->
@@ -78,7 +138,7 @@
       <div id="welcomeScreen" class="fade-in">
 
         <img
-          src="welcome.png"
+          src="images/welcome.png"
           class="w-full rounded-2xl mb-5 border border-slate-700"
         />
 
@@ -211,6 +271,22 @@
 
     const TOTAL_QUESTIONS = 10;
 
+    // XP SYSTEM
+    let totalXP =
+      Number(localStorage.getItem("chemXP")) || 0;
+
+    let streak =
+      Number(localStorage.getItem("chemStreak")) || 0;
+
+    let lastPlayed =
+      localStorage.getItem("lastPlayed") || "";
+
+    let weeklyReset =
+      localStorage.getItem("weeklyReset") || "";
+
+    const today =
+      new Date().toDateString();
+
     const questionEl = document.getElementById("question");
     const optionsEl = document.getElementById("options");
 
@@ -226,6 +302,121 @@
 
     const finalScore = document.getElementById("finalScore");
     const motivation = document.getElementById("motivation");
+
+    // Rank UI
+    const rankText =
+      document.getElementById("rankText");
+
+    const xpText =
+      document.getElementById("xpText");
+
+    const xpBar =
+      document.getElementById("xpBar");
+
+    const streakCount =
+      document.getElementById("streakCount");
+
+    const streakFire =
+      document.getElementById("streakFire");
+
+    // =========================
+    // UPDATE RANK UI
+    // =========================
+
+    function updateRankUI() {
+
+      const now = new Date();
+
+      const currentWeek =
+        `${now.getFullYear()}-${getWeekNumber(now)}`;
+
+      // Weekly reset
+      if (weeklyReset !== currentWeek) {
+
+        totalXP = 0;
+
+        localStorage.setItem("chemXP", 0);
+
+        localStorage.setItem(
+          "weeklyReset",
+          currentWeek
+        );
+
+        weeklyReset = currentWeek;
+
+      }
+
+      // Rank
+      let rank = "Student";
+
+      if (totalXP >= 560) {
+
+        rank = "Professor";
+
+      }
+
+      else if (totalXP >= 490) {
+
+        rank = "Alchemist";
+
+      }
+
+      else if (totalXP >= 350) {
+
+        rank = "Chemist";
+
+      }
+
+      rankText.textContent = rank;
+
+      // XP BAR
+      xpText.textContent =
+        `${totalXP} XP`;
+
+      const xpPercent =
+        Math.min((totalXP / 700) * 100, 100);
+
+      xpBar.style.width =
+        `${xpPercent}%`;
+
+      // STREAK
+      streakCount.textContent =
+        streak;
+
+      if (lastPlayed === today) {
+
+        streakFire.classList.remove("grayscale");
+
+      }
+
+      else {
+
+        streakFire.classList.add("grayscale");
+
+      }
+
+    }
+
+    // =========================
+    // GET WEEK NUMBER
+    // =========================
+
+    function getWeekNumber(date) {
+
+      const firstJan =
+        new Date(date.getFullYear(), 0, 1);
+
+      const days =
+        Math.floor(
+          (date - firstJan) /
+          (24 * 60 * 60 * 1000)
+        );
+
+      return Math.ceil(
+        (days + firstJan.getDay() + 1) / 7
+      );
+
+    }
 
     // =========================
     // SHUFFLE FUNCTION
@@ -321,7 +512,7 @@
 
         btn.disabled = true;
 
-        // Correct Answer
+        // Correct
         if (btn.textContent === correct) {
 
           btn.classList.remove("bg-slate-700");
@@ -333,7 +524,7 @@
 
         }
 
-        // Wrong Answer
+        // Wrong
         if (
           btn.textContent === selected &&
           selected !== correct
@@ -350,7 +541,7 @@
 
       });
 
-      // Add Score
+      // Add score
       if (selected === correct) {
 
         score += 10;
@@ -393,6 +584,53 @@
       finalScore.textContent =
         `${score}/100`;
 
+      // DAILY XP
+      const yesterday =
+        new Date();
+
+      yesterday.setDate(
+        yesterday.getDate() - 1
+      );
+
+      // Reset streak kalau bolong
+      if (
+        lastPlayed !== "" &&
+        lastPlayed !== today &&
+        lastPlayed !== yesterday.toDateString()
+      ) {
+
+        streak = 0;
+
+      }
+
+      // Hanya percobaan pertama hari itu
+      if (lastPlayed !== today) {
+
+        totalXP += score;
+
+        streak++;
+
+        localStorage.setItem(
+          "chemXP",
+          totalXP
+        );
+
+        localStorage.setItem(
+          "chemStreak",
+          streak
+        );
+
+        localStorage.setItem(
+          "lastPlayed",
+          today
+        );
+
+        lastPlayed = today;
+
+      }
+
+      updateRankUI();
+
       let message = "";
 
       // PERFECT
@@ -401,7 +639,8 @@
         message =
           "Luar biasa! Pagi ini otak kimiamu benar-benar bersinar seperti emas murni. ✨";
 
-        resultImage.src = "perfect.png";
+        resultImage.src =
+          "images/perfect.png";
 
       }
 
@@ -411,7 +650,8 @@
         message =
           "Hebat! Hafalan kimiamu sudah sangat kuat. Pertahankan rutinitas pagimu! 🌞";
 
-        resultImage.src = "great.png";
+        resultImage.src =
+          "images/great.png";
 
       }
 
@@ -421,7 +661,8 @@
         message =
           "Bagus! Sedikit lagi menuju master kimia pagi hari. Tetap konsisten ya! 🧪";
 
-        resultImage.src = "good.png";
+        resultImage.src =
+          "images/good.png";
 
       }
 
@@ -431,7 +672,8 @@
         message =
           "Tidak buruk! Setiap pagi adalah kesempatan baru untuk berkembang. 💡";
 
-        resultImage.src = "bad.png";
+        resultImage.src =
+          "images/bad.png";
 
       }
 
@@ -441,7 +683,8 @@
         message =
           "Semangat! Bahkan ilmuwan hebat juga belajar sedikit demi sedikit setiap hari. 🚀";
 
-        resultImage.src = "sad.png";
+        resultImage.src =
+          "images/sad.png";
 
       }
 
@@ -454,6 +697,8 @@
     // =========================
 
     window.onload = async () => {
+
+      updateRankUI();
 
       await loadQuestions();
 
