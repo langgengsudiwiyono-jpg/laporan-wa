@@ -7,7 +7,7 @@
 
   <title>Kuis Kimia Pagi</title>
 
-  <!-- Tailwind CSS -->
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <script>
@@ -54,9 +54,13 @@
   </style>
 </head>
 
-<body class="bg-slate-900 text-white min-h-screen flex items-center justify-center p-4">
+<body class="bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 text-white min-h-screen flex items-center justify-center p-4 overflow-x-hidden">
 
-  <div class="w-full max-w-xl">
+  <!-- BACKGROUND GLOW -->
+  <div class="fixed top-0 left-0 w-96 h-96 bg-emerald-500/10 blur-3xl rounded-full"></div>
+  <div class="fixed bottom-0 right-0 w-96 h-96 bg-indigo-500/10 blur-3xl rounded-full"></div>
+
+  <div class="w-full max-w-xl relative z-10">
 
     <!-- HEADER -->
     <div class="mb-6">
@@ -69,8 +73,8 @@
         Setoran latihan hafalan unsur & senyawa setiap pagi =￣ω￣=
       </p>
 
-      <!-- XP & STREAK PANEL -->
-      <div class="mt-5 bg-slate-800 border border-slate-700 rounded-2xl p-4">
+      <!-- XP PANEL -->
+      <div class="mt-5 bg-slate-800/70 backdrop-blur border border-slate-700 rounded-2xl p-4">
 
         <div class="flex items-center justify-between mb-3">
 
@@ -132,13 +136,13 @@
     </div>
 
     <!-- MAIN CARD -->
-    <div class="bg-slate-800 rounded-3xl shadow-2xl p-5 border border-slate-700">
+    <div class="bg-slate-800/80 backdrop-blur rounded-3xl shadow-2xl p-5 border border-slate-700">
 
-      <!-- WELCOME SCREEN -->
+      <!-- WELCOME -->
       <div id="welcomeScreen" class="fade-in">
 
         <img
-          src="welcome.png"
+          src="images/welcome.png"
           class="w-full rounded-2xl mb-5 border border-slate-700"
         />
 
@@ -158,7 +162,7 @@
 
       </div>
 
-      <!-- QUIZ CONTAINER -->
+      <!-- QUIZ -->
       <div id="quizContainer" class="hidden fade-in">
 
         <!-- PROGRESS -->
@@ -234,7 +238,7 @@
   <script>
 
     // =========================
-    // LOAD QUESTIONS FROM JSON
+    // LOAD QUESTIONS
     // =========================
 
     let questionBank = [];
@@ -243,19 +247,29 @@
 
       try {
 
-        const response = await fetch("questions.json");
+        const response =
+          await fetch("questions.json");
 
-        questionBank = await response.json();
+        questionBank =
+          await response.json();
 
-        console.log("Questions loaded:", questionBank.length);
+        console.log(
+          "Questions loaded:",
+          questionBank.length
+        );
 
       }
 
       catch (error) {
 
-        console.error("Gagal load questions:", error);
+        console.error(
+          "Gagal load questions:",
+          error
+        );
 
-        alert("Questions gagal dimuat!");
+        alert(
+          "Questions gagal dimuat!"
+        );
 
       }
 
@@ -271,7 +285,10 @@
 
     const TOTAL_QUESTIONS = 10;
 
-    // XP SYSTEM
+    // =========================
+    // LOCAL STORAGE
+    // =========================
+
     let totalXP =
       Number(localStorage.getItem("chemXP")) || 0;
 
@@ -287,23 +304,43 @@
     const today =
       new Date().toDateString();
 
-    const questionEl = document.getElementById("question");
-    const optionsEl = document.getElementById("options");
+    // =========================
+    // ELEMENTS
+    // =========================
 
-    const progressText = document.getElementById("progressText");
-    const progressBar = document.getElementById("progressBar");
-    const scoreText = document.getElementById("scoreText");
+    const questionEl =
+      document.getElementById("question");
 
-    const quizContainer = document.getElementById("quizContainer");
-    const resultContainer = document.getElementById("resultContainer");
+    const optionsEl =
+      document.getElementById("options");
 
-    const welcomeScreen = document.getElementById("welcomeScreen");
-    const resultImage = document.getElementById("resultImage");
+    const progressText =
+      document.getElementById("progressText");
 
-    const finalScore = document.getElementById("finalScore");
-    const motivation = document.getElementById("motivation");
+    const progressBar =
+      document.getElementById("progressBar");
 
-    // Rank UI
+    const scoreText =
+      document.getElementById("scoreText");
+
+    const quizContainer =
+      document.getElementById("quizContainer");
+
+    const resultContainer =
+      document.getElementById("resultContainer");
+
+    const welcomeScreen =
+      document.getElementById("welcomeScreen");
+
+    const resultImage =
+      document.getElementById("resultImage");
+
+    const finalScore =
+      document.getElementById("finalScore");
+
+    const motivation =
+      document.getElementById("motivation");
+
     const rankText =
       document.getElementById("rankText");
 
@@ -320,85 +357,35 @@
       document.getElementById("streakFire");
 
     // =========================
-    // UPDATE RANK UI
+    // SAVE DATA
     // =========================
 
-    function updateRankUI() {
+    function saveData() {
 
-      const now = new Date();
+      localStorage.setItem(
+        "chemXP",
+        totalXP
+      );
 
-      const currentWeek =
-        `${now.getFullYear()}-${getWeekNumber(now)}`;
+      localStorage.setItem(
+        "chemStreak",
+        streak
+      );
 
-      // Weekly reset
-      if (weeklyReset !== currentWeek) {
+      localStorage.setItem(
+        "lastPlayed",
+        lastPlayed
+      );
 
-        totalXP = 0;
-
-        localStorage.setItem("chemXP", 0);
-
-        localStorage.setItem(
-          "weeklyReset",
-          currentWeek
-        );
-
-        weeklyReset = currentWeek;
-
-      }
-
-      // Rank
-      let rank = "Student";
-
-      if (totalXP >= 560) {
-
-        rank = "Professor";
-
-      }
-
-      else if (totalXP >= 490) {
-
-        rank = "Alchemist";
-
-      }
-
-      else if (totalXP >= 350) {
-
-        rank = "Chemist";
-
-      }
-
-      rankText.textContent = rank;
-
-      // XP BAR
-      xpText.textContent =
-        `${totalXP} XP`;
-
-      const xpPercent =
-        Math.min((totalXP / 700) * 100, 100);
-
-      xpBar.style.width =
-        `${xpPercent}%`;
-
-      // STREAK
-      streakCount.textContent =
-        streak;
-
-      if (lastPlayed === today) {
-
-        streakFire.classList.remove("grayscale");
-
-      }
-
-      else {
-
-        streakFire.classList.add("grayscale");
-
-      }
+      localStorage.setItem(
+        "weeklyReset",
+        weeklyReset
+      );
 
     }
 
     // =========================
-    // GET WEEK NUMBER
+    // WEEK NUMBER
     // =========================
 
     function getWeekNumber(date) {
@@ -419,12 +406,109 @@
     }
 
     // =========================
-    // SHUFFLE FUNCTION
+    // UPDATE RANK
+    // =========================
+
+    function updateRankUI() {
+
+      const now = new Date();
+
+      const currentWeek =
+        `${now.getFullYear()}-${getWeekNumber(now)}`;
+
+      // FIRST SETUP
+      if (weeklyReset === "") {
+
+        weeklyReset =
+          currentWeek;
+
+        saveData();
+
+      }
+
+      // WEEKLY RESET
+      else if (
+        weeklyReset !== currentWeek
+      ) {
+
+        totalXP = 0;
+
+        streak = 0;
+
+        weeklyReset =
+          currentWeek;
+
+        saveData();
+
+      }
+
+      // RANK
+      let rank = "Student";
+
+      if (totalXP >= 560) {
+
+        rank = "Professor";
+
+      }
+
+      else if (totalXP >= 490) {
+
+        rank = "Alchemist";
+
+      }
+
+      else if (totalXP >= 350) {
+
+        rank = "Chemist";
+
+      }
+
+      rankText.textContent =
+        rank;
+
+      // XP
+      xpText.textContent =
+        `${totalXP} XP`;
+
+      const xpPercent =
+        Math.min(
+          (totalXP / 700) * 100,
+          100
+        );
+
+      xpBar.style.width =
+        `${xpPercent}%`;
+
+      // STREAK
+      streakCount.textContent =
+        streak;
+
+      if (lastPlayed === today) {
+
+        streakFire.classList.remove(
+          "grayscale"
+        );
+
+      }
+
+      else {
+
+        streakFire.classList.add(
+          "grayscale"
+        );
+
+      }
+
+    }
+
+    // =========================
+    // SHUFFLE
     // =========================
 
     function shuffle(array) {
 
-      return [...array].sort(() => Math.random() - 0.5);
+      return [...array]
+        .sort(() => Math.random() - 0.5);
 
     }
 
@@ -434,23 +518,37 @@
 
     function startQuiz() {
 
-      if (questionBank.length === 0) {
+      if (
+        questionBank.length === 0
+      ) {
 
-        alert("Questions belum selesai dimuat!");
+        alert(
+          "Questions belum selesai dimuat!"
+        );
+
         return;
 
       }
 
-      welcomeScreen.classList.add("hidden");
+      welcomeScreen.classList.add(
+        "hidden"
+      );
 
       currentQuestion = 0;
+
       score = 0;
 
       quizQuestions =
-        shuffle(questionBank).slice(0, TOTAL_QUESTIONS);
+        shuffle(questionBank)
+        .slice(0, TOTAL_QUESTIONS);
 
-      quizContainer.classList.remove("hidden");
-      resultContainer.classList.add("hidden");
+      quizContainer.classList.remove(
+        "hidden"
+      );
+
+      resultContainer.classList.add(
+        "hidden"
+      );
 
       loadQuestion();
 
@@ -462,9 +560,11 @@
 
     function loadQuestion() {
 
-      const q = quizQuestions[currentQuestion];
+      const q =
+        quizQuestions[currentQuestion];
 
-      questionEl.textContent = q.q;
+      questionEl.textContent =
+        q.q;
 
       progressText.textContent =
         `Soal ${currentQuestion + 1} dari ${TOTAL_QUESTIONS}`;
@@ -485,13 +585,18 @@
         const btn =
           document.createElement("button");
 
-        btn.textContent = option;
+        btn.textContent =
+          option;
 
         btn.className =
           "option-btn w-full bg-slate-700 hover:bg-slate-600 border border-slate-600 text-left py-4 px-4 rounded-2xl text-base font-medium";
 
         btn.onclick =
-          () => selectAnswer(btn, option, q.a);
+          () => selectAnswer(
+            btn,
+            option,
+            q.a
+          );
 
         optionsEl.appendChild(btn);
 
@@ -503,7 +608,11 @@
     // SELECT ANSWER
     // =========================
 
-    function selectAnswer(button, selected, correct) {
+    function selectAnswer(
+      button,
+      selected,
+      correct
+    ) {
 
       const buttons =
         document.querySelectorAll(".option-btn");
@@ -512,10 +621,14 @@
 
         btn.disabled = true;
 
-        // Correct
-        if (btn.textContent === correct) {
+        // CORRECT
+        if (
+          btn.textContent === correct
+        ) {
 
-          btn.classList.remove("bg-slate-700");
+          btn.classList.remove(
+            "bg-slate-700"
+          );
 
           btn.classList.add(
             "bg-emerald-500",
@@ -524,13 +637,15 @@
 
         }
 
-        // Wrong
+        // WRONG
         if (
           btn.textContent === selected &&
           selected !== correct
         ) {
 
-          btn.classList.remove("bg-slate-700");
+          btn.classList.remove(
+            "bg-slate-700"
+          );
 
           btn.classList.add(
             "bg-red-500",
@@ -541,7 +656,7 @@
 
       });
 
-      // Add score
+      // SCORE
       if (selected === correct) {
 
         score += 10;
@@ -555,7 +670,9 @@
 
         currentQuestion++;
 
-        if (currentQuestion < TOTAL_QUESTIONS) {
+        if (
+          currentQuestion < TOTAL_QUESTIONS
+        ) {
 
           loadQuestion();
 
@@ -572,19 +689,23 @@
     }
 
     // =========================
-    // SHOW RESULT
+    // RESULT
     // =========================
 
     function showResult() {
 
-      quizContainer.classList.add("hidden");
+      quizContainer.classList.add(
+        "hidden"
+      );
 
-      resultContainer.classList.remove("hidden");
+      resultContainer.classList.remove(
+        "hidden"
+      );
 
       finalScore.textContent =
         `${score}/100`;
 
-      // DAILY XP
+      // STREAK RESET CHECK
       const yesterday =
         new Date();
 
@@ -592,7 +713,6 @@
         yesterday.getDate() - 1
       );
 
-      // Reset streak kalau bolong
       if (
         lastPlayed !== "" &&
         lastPlayed !== today &&
@@ -603,29 +723,16 @@
 
       }
 
-      // Hanya percobaan pertama hari itu
+      // ONLY FIRST PLAY TODAY
       if (lastPlayed !== today) {
 
         totalXP += score;
 
         streak++;
 
-        localStorage.setItem(
-          "chemXP",
-          totalXP
-        );
-
-        localStorage.setItem(
-          "chemStreak",
-          streak
-        );
-
-        localStorage.setItem(
-          "lastPlayed",
-          today
-        );
-
         lastPlayed = today;
+
+        saveData();
 
       }
 
@@ -633,62 +740,63 @@
 
       let message = "";
 
-      // PERFECT
+      // 100
       if (score === 100) {
 
         message =
           "Luar biasa! Pagi ini otak kimiamu benar-benar bersinar seperti emas murni. ✨";
 
         resultImage.src =
-          "perfect.png";
+          "images/perfect.png";
 
       }
 
-      // GREAT
+      // 80
       else if (score >= 80) {
 
         message =
           "Hebat! Hafalan kimiamu sudah sangat kuat. Pertahankan rutinitas pagimu! 🌞";
 
         resultImage.src =
-          "great.png";
+          "images/great.png";
 
       }
 
-      // GOOD
+      // 50
       else if (score >= 50) {
 
         message =
           "Bagus! Sedikit lagi menuju master kimia pagi hari. Tetap konsisten ya! 🧪";
 
         resultImage.src =
-          "good.png";
+          "images/good.png";
 
       }
 
-      // BAD
+      // 30
       else if (score >= 30) {
 
         message =
           "Tidak buruk! Setiap pagi adalah kesempatan baru untuk berkembang. 💡";
 
         resultImage.src =
-          "bad.png";
+          "images/bad.png";
 
       }
 
-      // SAD
+      // BELOW 30
       else {
 
         message =
           "Semangat! Bahkan ilmuwan hebat juga belajar sedikit demi sedikit setiap hari. 🚀";
 
         resultImage.src =
-          "sad.png";
+          "images/sad.png";
 
       }
 
-      motivation.textContent = message;
+      motivation.textContent =
+        message;
 
     }
 
